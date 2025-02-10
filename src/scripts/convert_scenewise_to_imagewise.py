@@ -4,10 +4,12 @@ import multiprocessing
 import pathlib
 import shutil
 import os
+import numpy as np
 
 import tqdm
 
 from bop_toolkit_lib.dataset import bop_imagewise, bop_scenewise
+from bop_toolkit_lib import inout
 
 
 def convert_scene_to_imagewise(
@@ -33,10 +35,8 @@ def convert_scene_to_imagewise(
         load_scene_gt=gt_available,
         load_scene_gt_info=gt_available,
     )
-    scene_infos = bop_scenewise.read_scene_infos(
-        input_scene_dir,
-    )
-    output_dir.mkdir(exist_ok=True)
+    scene_infos = bop_scenewise.read_scene_infos(input_scene_dir)
+    output_dir.mkdir(exist_ok=True, parents=True)
 
     bop_imagewise.save_scene_camera(
         scene_data["scene_camera"], output_dir / (image_tkey + ".camera.json")

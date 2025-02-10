@@ -66,7 +66,8 @@ def run_bop(cfg: DictConfig) -> None:
 
     # bop evaluation in parallel
     save_dir = f"{cfg.save_dir}/{cfg.model.model_name}_{cfg.dataset_name}{cfg.run_id}"
-    folders = ["predictions", "refined_predictions", "refined_multiple_predictions"]
+    #folders = ["predictions", "refined_predictions", "refined_multiple_predictions"]
+    folders = ["predictions", "refined_multiple_predictions"]
     list_predictions = []
     for folder in folders:
         files = [
@@ -83,7 +84,8 @@ def run_bop(cfg: DictConfig) -> None:
     eval_bop_with_index = partial(
         eval_bop,
         dataset_name=cfg.dataset_name,
-        list_prefix=["coarse", "refined", "refined_multiple"],
+        #list_prefix=["coarse", "refined", "refined_multiple"],
+        list_prefix=["coarse", "refined_multiple"],
         list_predictions=list_predictions,
         results_dir=cfg.results_dir,
     )

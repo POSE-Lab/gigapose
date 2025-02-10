@@ -88,14 +88,13 @@ def render(cfg) -> None:
         obj_pose_dir = dataset_save_dir / "object_poses"
         os.makedirs(obj_pose_dir, exist_ok=True)
 
-        if dataset_name in ["tless"]:
+        if dataset_name in ["tless", "ours1"]:
             cad_name = "models_cad"
         else:
             cad_name = "models"
         cad_dir = root_dir / dataset_name / cad_name
 
-        cad_paths = cad_dir.glob("*.ply")
-        cad_paths = list(cad_paths)
+        cad_paths = [str(os.path.abspath(cad)) for cad in cad_dir.glob("*.ply")]
         logger.info(f"Found {len(list(cad_paths))} objects")
 
         output_dirs = []

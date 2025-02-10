@@ -411,7 +411,7 @@ def load_test_list_and_cnos_detections(
     - No sorting techniques since target_objects is not available
     """
     # load cnos detections
-    if dataset_name in ["lmo", "tless", "tudl", "icbin", "itodd", "hb", "ycbv"]:
+    if dataset_name in ["lmo", "tless", "tudl", "icbin", "itodd", "hb", "ycbv", "industrial_shapes"]:
         year = "19"
         det_model = "cnos-fastsam"
     elif dataset_name in ["hope"]:
